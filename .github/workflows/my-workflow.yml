@@ -3,7 +3,9 @@
 name: Docker Actions
 
 # Controls when the workflow will run
-on: [push]
+on:
+  pul_request:
+    type: [labeled]
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -20,7 +22,10 @@ jobs:
 
       - name: hello-action
         uses: ./.github/actions/hello-world
-        with:
-          firstGreeting: "1st Learnign Lab User"
+#        with:
+#          firstGreeting: "1st Learnign Lab User"
           #secondGreeting: "2nd Learning Lab User"
           #thirdGreeting: "3rd Learning Lab User"
+      
+      - name: cat-facts
+        uses: ./.github/actions/cat-facts
