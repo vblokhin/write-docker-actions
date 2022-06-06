@@ -1,26 +1,31 @@
 # This is a basic workflow to help you get started with Actions
 
-#name: Docker Actions
+name: Docker Actions
 
 # Controls when the workflow will run
-#on: [push]
+on:
+  pul_request:
+    type: [labeled]
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-#jobs:
+jobs:
   # This workflow contains a single job called "action"
-#  action:
+  action:
     # The type of runner that the job will run on
-#    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-#    steps:
+    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#      - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-#      - name: hello-action
-#        uses: ./.github/actions/hello-world
+      - name: hello-action
+        uses: ./.github/actions/hello-world
 #        with:
 #          firstGreeting: "1st Learnign Lab User"
           #secondGreeting: "2nd Learning Lab User"
           #thirdGreeting: "3rd Learning Lab User"
+      
+      - name: cat-facts
+        uses: ./.github/actions/cat-facts
