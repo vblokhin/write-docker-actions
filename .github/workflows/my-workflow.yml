@@ -4,8 +4,8 @@ name: Docker Actions
 
 # Controls when the workflow will run
 on:
-  pul_request:
-    type: [labeled]
+  pull_request:
+    types: [labeled]
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -29,3 +29,11 @@ jobs:
       
       - name: cat-facts
         uses: ./.github/actions/cat-facts
+        id: cat
+
+      - name: create-issue
+        uses: ./.github/actions/issue-maker
+        with:
+          repoToken: ${{secrets.GITHUB_TOKEN}}
+          catFact: ${{steps.cat.outputs.fact}}
+          issueTitle: "a cat fact for you"
